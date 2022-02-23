@@ -1,4 +1,4 @@
-const {Telegraf , Stage , session , BaseScene , WizardScene} = require('micro-bot')
+const {Telegraf , Composer, Stage , session , BaseScene , WizardScene} = require('micro-bot')
 const mongoose = require('mongoose')
 
 const userModel = require('./userModel')
