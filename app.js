@@ -106,6 +106,7 @@ const input_form = new WizardScene('input_data',
                 throw e
             } else {
                 if (data.length > 0) {
+			console.log(ctx.session)
 
                     const ref_id = parseInt(data[0].referrer_id)
 
@@ -150,6 +151,8 @@ const input_form = new WizardScene('input_data',
 
 
                 } else {
+
+			console.log(ctx.session)
                     
                     const inputData = new userModel({
                         userId: ctx.from.id,
