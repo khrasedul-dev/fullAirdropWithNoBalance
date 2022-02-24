@@ -22,16 +22,16 @@ bot.use(session())
 
 const userScene = new BaseScene('user_data')
 
-// userScene.use((ctx)=>{
-//     ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
-//         reply_markup: {
-//             inline_keyboard: [
-//                 [{text: "Start", callback_data: "join"}]
-//             ]
-//         }
-//     })
+userScene.use((ctx)=>{
+    ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
+        reply_markup: {
+            inline_keyboard: [
+                [{text: "Start", callback_data: "join"}]
+            ]
+        }
+    })
 
-// })
+})
 
 userScene.action('join',ctx=>{
     ctx.answerCbQuery()
@@ -248,8 +248,6 @@ bot.start((ctx)=>{
                             throw e
                         } else {
                             
-                            ctx.scene.enter('user_data')
-
                             ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
                                 reply_markup: {
                                     inline_keyboard: [
@@ -258,15 +256,11 @@ bot.start((ctx)=>{
                                 }
                             })
 
-
                         }
 
                     })
 
                 } else {
-
-                    ctx.scene.enter('user_data')
-
 
                     ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
                         reply_markup: {
@@ -275,8 +269,6 @@ bot.start((ctx)=>{
                             ]
                         }
                     })
-
-
 
                 }
  
