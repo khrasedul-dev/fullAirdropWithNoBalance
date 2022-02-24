@@ -22,7 +22,7 @@ bot.use(session())
 
 bot.action('join',ctx=>{
     ctx.answerCbQuery()
-    ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/sjjshdbd \n\nClick done to proceed after you have joined` ,{
+    ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/dogymonapp \n\nClick done to proceed after you have joined` ,{
         reply_markup: {
             inline_keyboard: [
                 [{text: "Done", callback_data: "groupJoin"}]
@@ -39,7 +39,7 @@ bot.action('groupJoin',ctx=>{
             if (data.length > 0) {
                 ctx.answerCbQuery()
                 
-                ctx.telegram.sendMessage(ctx.chat.id , `Task 2: \n\nPlease Join our telegram channel \nhttps://t.me/jsnsbdbbd \n\nClick done to proceed after you have joined` ,{
+                ctx.telegram.sendMessage(ctx.chat.id , `Task 2: \n\nPlease Join our telegram channel \nhttps://t.me/dogymonchannel \n\nClick done to proceed after you have joined` ,{
                     reply_markup: {
                         inline_keyboard: [
                             [{text: "Done", callback_data: "channelJoin"}]
@@ -50,7 +50,7 @@ bot.action('groupJoin',ctx=>{
             } else {
                 ctx.answerCbQuery()
                
-                ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/sjjshdbd \n\nClick done to proceed after you have joined` ,{
+                ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/dogymonapp \n\nClick done to proceed after you have joined` ,{
                     reply_markup: {
                         inline_keyboard: [
                             [{text: "Done", callback_data: "groupJoin"}]
@@ -69,21 +69,21 @@ const input_form = new WizardScene('input_data',
         ctx.session.user.userId = ctx.from.id
         ctx.session.user.userName = ctx.from.first_name
 
-        ctx.reply( `Task 3: \n\nA. Follow us on Twitter \nB. Like one of our Twitter posts, make a Twitter comment and retweet our post \n\nNote: you must retweet our post, not some other person's post \n\nWhen you are done, return here and enter your Twitter username to proceed. \n\nOur team will manually verify if you have completed this task`)
+        ctx.reply( `Task 3: \n\nA. Follow us on Twitter \nhttps://twitter.com/DogymonApp \nB. Like one of our Twitter posts, make a Twitter comment and retweet our post \n\nNote: you must retweet our post, not some other person's post \n\nWhen you are done, return here and enter your Twitter username to proceed. \n\nOur team will manually verify if you have completed this task`)
         return ctx.wizard.next()
     },
     (ctx)=>{
 
         ctx.session.user.twitter = ctx.update.message.text
 
-        ctx.reply( `Task 4: \n\nA. Follow us on Reddit, comment, and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
+        ctx.reply( `Task 4: \n\nA. Follow us on Reddit \nhttps://www.reddit.com/r/DogymonFinance/ \nComment, and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
         return ctx.wizard.next()
     },
     (ctx)=>{
 
         ctx.session.user.reddit = ctx.update.message.text
 
-        ctx.reply( `Task 5: \n\nA. Like us on Facebook, comment, and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
+        ctx.reply( `Task 5: \n\nA. Like us on Facebook \nhttps://facebook.com/dogymonapp \n Comment, and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
         return ctx.wizard.next()
     },
     (ctx)=>{
