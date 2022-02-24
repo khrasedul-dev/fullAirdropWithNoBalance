@@ -251,7 +251,7 @@ data.then((data) => {
 
             const data = inputData.save()
 
-            data.then((e) => {
+            data.then((data) => {
 
 
                 ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest.\n\nWe will be giving 0.5BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.`, {
