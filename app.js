@@ -152,7 +152,7 @@ const input_form = new WizardScene('input_data',
 					data3.then((data) => {
 
 
-						const ref_count = parseInt(data2[0].referral_count)
+						const ref_count = parseInt(data[0].referral_count)
 
 
 						const update_ref = {
