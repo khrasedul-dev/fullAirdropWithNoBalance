@@ -285,7 +285,7 @@ bot.action("start", async (ctx)=>{
                     ]
                 }
             }).catch((e)=>console.log(" Something is wrong"))
-	}).catch((e)=>console.log("Something is wrong"))
+	}).catch((e)=>ctx.reply("Your session is finished. Please enter /start"))
 })
 
 
