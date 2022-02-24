@@ -22,7 +22,7 @@ bot.use(session())
 
 bot.action('join',ctx=>{
     ctx.answerCbQuery()
-    ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/dogymonapp \n\nClick done to proceed after you have joined` ,{
+    ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup (If you are already a member of our group send the word "Airdrop" as a messsage in the group, then return here and click done to continue) \n\nhttps://t.me/dogymonapp \n\nClick done to proceed after you have joined` ,{
         reply_markup: {
             inline_keyboard: [
                 [{text: "Done", callback_data: "groupJoin"}]
@@ -50,7 +50,7 @@ bot.action('groupJoin',ctx=>{
             } else {
                 ctx.answerCbQuery()
                
-                ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/dogymonapp \n\nClick done to proceed after you have joined` ,{
+                ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup (If you are already a member of our group send the word "Airdrop" as a messsage in the group, then return here and click done to continue) \n\nhttps://t.me/dogymonapp \n\nClick done to proceed after you have joined` ,{
                     reply_markup: {
                         inline_keyboard: [
                             [{text: "Done", callback_data: "groupJoin"}]
