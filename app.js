@@ -310,7 +310,7 @@ bot.on('new_chat_members', (ctx)=>{
                             const data = new checkGroup({
                                     userId: ctx.from.id
                             })
-                            const d = await data.save()
+                            const d = data.save()
 				d.catch((e)=>console.log("Something is wrong"))
                         }    
                    
@@ -338,7 +338,7 @@ bot.on('text', (ctx)=>{
                             const data = new checkGroup({
                                     userId: ctx.from.id
                             })
-                            const d = await data.save()
+                            const d = data.save()
 				d.catch((e)=>console.log("Something is wrong"))
                         }    
                    
