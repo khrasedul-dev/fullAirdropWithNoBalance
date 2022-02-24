@@ -102,88 +102,113 @@ const input_form = new WizardScene('input_data',
     },
     (ctx)=>{
 	
-        userModel.find({userId: ctx.from.id},(e,data)=>{
+        const data = userModel.find({
+    userId: ctx.from.id
+})
+
+data.then((data) => {
+
+
+
+    if (data.length > 0) {
+
+        const ref_id = parseInt(data[0].referrer_id)
+
+        const inputData = {
+            twitter: ctx.user.twitter,
+            reddit: ctx.user.reddit,
+            facebook: ctx.user.facebook,
+            wallet: ctx.update.message.text
+        }
+
+
+
+
+        const data = userModel.updateOne({
+            userId: ctx.from.id
+        }, inputData)
+
+        data.then((data) => {
+
+
+            userModel.find({
+                userId: ref_id
+            })
+
+            data.then((data) => {
+
+
+                const ref_count = parseInt(data2[0].referral_count)
+
+
+                const update_ref = {
+                    referral_count: ref_count + 1
+                }
+
+
+                const data = userModel.updateOne({
+                    userId: ref_id
+                }, update_ref)
+
+                data.then((data) => {
+                    ctx.telegram.sendMessage(ctx.chat.id, `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id}\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 0.5 bnb worth of tokens each to 150 persons with the highest number of referrals. so it all depends on your number of referrals .Start sharing your link with your friends now. Good luck`, {
+                        reply_markup: {
+                            inline_keyboard: [
+                                [{
+                                    text: "Start",
+                                    callback_data: "start"
+                                }]
+                            ]
+                        }
+                    }).catch((e) => console.log(" Something is wrong"))
+
+                }).catch((e) => console.log("Something is wrong"))
+
+            })
+
+
+
+
+        }).catch((e) => console.log("Something is wrong"))
+
+
+
+
+    } else {
+
+        console.log(ctx.user)
+
+        const inputData = new userModel({
+            userId: ctx.from.id,
+            name: ctx.from.first_name,
+            twitter: ctx.user.twitter,
+            reddit: ctx.user.reddit,
+            facebook: ctx.user.facebook,
+            wallet: ctx.update.message.text,
+            referral_count: '0'
+        })
+
+        inputData.save((e) => {
 
             if (e) {
                 throw e
             } else {
-                if (data.length > 0) {
-			console.log(ctx.user)
 
-                    const ref_id = parseInt(data[0].referrer_id)
-
-                    const inputData = {
-                        twitter: ctx.user.twitter,
-                        reddit: ctx.user.reddit,
-                        facebook: ctx.user.facebook,
-                        wallet:  ctx.update.message.text
+                ctx.telegram.sendMessage(ctx.chat.id, `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id}\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 0.5 bnb worth of tokens each to 150 persons with the highest number of referrals. so it all depends on your number of referrals .Start sharing your link with your friends now. Good luck`, {
+                    reply_markup: {
+                        inline_keyboard: [
+                            [{
+                                text: "Start",
+                                callback_data: "start"
+                            }]
+                        ]
                     }
-                    
-                    userModel.updateOne({userId: ctx.from.id},inputData,(e,data)=>{
-                        if (e) {
-                            throw e
-                        } else {
-                            userModel.find({userId: ref_id},(e,data2)=>{
-                                if (e) {
-                                    throw e
-                                } else {
-                                    const ref_count = parseInt(data2[0].referral_count)
-
-                                    const update_ref = {
-                                        referral_count : ref_count + 1
-                                    }
-                                    userModel.updateOne({userId: ref_id},update_ref, (e,data)=>{
-                                        if (e) {
-                                            throw e
-                                        } else {
-                                            
-                                            ctx.telegram.sendMessage(ctx.chat.id , `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id}\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 0.5 bnb worth of tokens each to 150 persons with the highest number of referrals. so it all depends on your number of referrals .Start sharing your link with your friends now. Good luck`,{
-                                                reply_markup: {
-                                                    inline_keyboard: [
-                                                        [{text: "Start", callback_data: "start"}]
-                                                    ]
-                                                }
-                                            }).catch((e)=>console.log(" Something is wrong"))
-                                        }
-                                    })
-                                }
-                            })
-                        }
-                    })
-
-
-                } else {
-
-			console.log(ctx.user)
-                    
-                    const inputData = new userModel({
-                        userId: ctx.from.id,
-                        name: ctx.from.first_name,
-                        twitter: ctx.user.twitter,
-                        reddit: ctx.user.reddit,
-                        facebook: ctx.user.facebook,
-                        wallet:  ctx.update.message.text,
-                        referral_count: '0'
-                    })
-
-                    inputData.save((e)=>{
-
-                        if (e) {
-                            throw e
-                        } else {
-
-                            ctx.telegram.sendMessage(ctx.chat.id , `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id}\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 0.5 bnb worth of tokens each to 150 persons with the highest number of referrals. so it all depends on your number of referrals .Start sharing your link with your friends now. Good luck`,{
-                                reply_markup: {
-                                    inline_keyboard: [
-                                        [{text: "Start", callback_data: "start"}]
-                                    ]
-                                }
-                            }).catch((e)=>console.log(" Something is wrong"))
-                        }
-                    })
-                }
+                }).catch((e) => console.log(" Something is wrong"))
             }
         })
+    }
+
+}).catch((e) => console.log("Something is wrong"))
 
 
 
