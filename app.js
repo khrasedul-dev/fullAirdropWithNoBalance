@@ -35,7 +35,7 @@ bot.action('join',ctx=>{
 })
 
 bot.action('groupJoin',async (ctx)=>{
-    const data = checkGroup.find({userId: ctx.from.id})
+    const data = await checkGroup.find({userId: ctx.from.id})
             
      data.then(()=>{
 
