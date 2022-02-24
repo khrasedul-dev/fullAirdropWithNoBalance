@@ -129,7 +129,7 @@ const input_form = new WizardScene('input_data',
                                             throw e
                                         } else {
                                             
-                                            ctx.telegram.sendMessage(ctx.chat.id , `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count (currently 0) increases. We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck \n\n\nTo access your Account details At any time just click the button below or the /start command.`,{
+                                            ctx.telegram.sendMessage(ctx.chat.id , `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id}\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 0.5 bnb worth of tokens each to 150 persons with the highest number of referrals. so it all depends on your number of referrals .Start sharing your link with your friends now. Good luck`,{
                                                 reply_markup: {
                                                     inline_keyboard: [
                                                         [{text: "Start", callback_data: "start"}]
@@ -162,7 +162,7 @@ const input_form = new WizardScene('input_data',
                             throw e
                         } else {
 
-                            ctx.telegram.sendMessage(ctx.chat.id , `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count (currently 0) increases. We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck \n\n\nTo access your Account details At any time just click the button below or the /start command.`,{
+                            ctx.telegram.sendMessage(ctx.chat.id , `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id}\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 0.5 bnb worth of tokens each to 150 persons with the highest number of referrals. so it all depends on your number of referrals .Start sharing your link with your friends now. Good luck`,{
                                 reply_markup: {
                                     inline_keyboard: [
                                         [{text: "Start", callback_data: "start"}]
