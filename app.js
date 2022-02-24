@@ -31,7 +31,7 @@ bot.action('join',ctx=>{
                 [{text: "Done", callback_data: "groupJoin"}]
             ]
         }
-    }).catch(()=>console.log(" Something is wrong"))
+    }).catch((e)=>console.log(" Something is wrong"))
 })
 
 bot.action('groupJoin',ctx=>{
@@ -48,7 +48,7 @@ bot.action('groupJoin',ctx=>{
                             [{text: "Done", callback_data: "channelJoin"}]
                         ]
                     }
-                }).catch(()=>console.log(" Something is wrong"))
+                }).catch((e)=>console.log(" Something is wrong"))
 
             } else {
                 
@@ -59,7 +59,7 @@ bot.action('groupJoin',ctx=>{
                             [{text: "Done", callback_data: "groupJoin"}]
                         ]
                     }
-                }).catch(()=>console.log(" Something is wrong"))
+                }).catch((e)=>console.log(" Something is wrong"))
             }
         }
     })
@@ -73,21 +73,21 @@ const input_form = new WizardScene('input_data',
         ctx.user.userId = ctx.from.id
         ctx.user.userName = ctx.from.first_name
 
-        ctx.reply( `Task 3: \n\nA. Click the link: \nhttps://twitter.com/DogymonApp \n\nFollow us on Twitter \nB. Like one of our Twitter posts, make a Twitter comment and retweet our post  \n\nNote: you must retweet our post, not some other person's post \n\nWhen you are done, return here and enter your Twitter username to proceed. \n\nOur team will manually verify if you have completed this task`).catch(()=>console.log(" Something is wrong"))
+        ctx.reply( `Task 3: \n\nA. Click the link: \nhttps://twitter.com/DogymonApp \n\nFollow us on Twitter \nB. Like one of our Twitter posts, make a Twitter comment and retweet our post  \n\nNote: you must retweet our post, not some other person's post \n\nWhen you are done, return here and enter your Twitter username to proceed. \n\nOur team will manually verify if you have completed this task`).catch((e)=>console.log(" Something is wrong"))
         return ctx.wizard.next()
     },
     (ctx)=>{
 
         ctx.user.twitter = ctx.update.message.text
 
-        ctx.reply( `Task 4: \n\nA. Click the link:\nhttps://www.reddit.com/r/DogymonFinance/ \n\nFollow us on Reddit, Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`).catch(()=>console.log(" Something is wrong"))
+        ctx.reply( `Task 4: \n\nA. Click the link:\nhttps://www.reddit.com/r/DogymonFinance/ \n\nFollow us on Reddit, Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`).catch((e)=>console.log(" Something is wrong"))
         return ctx.wizard.next()
     },
     (ctx)=>{
 
         ctx.user.reddit = ctx.update.message.text
 
-        ctx.reply( `Task 5: \n\nA. Click the link: \nhttps://facebook.com/dogymonapp \n\nLike us on Facebook Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and write your full name on facebook to proceed. (Note that if you don't provide us with your full name on facebook our admins may not verify it's you because multiple persons may bear same single name on facebook)`).catch(()=>console.log(" Something is wrong"))
+        ctx.reply( `Task 5: \n\nA. Click the link: \nhttps://facebook.com/dogymonapp \n\nLike us on Facebook Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and write your full name on facebook to proceed. (Note that if you don't provide us with your full name on facebook our admins may not verify it's you because multiple persons may bear same single name on facebook)`).catch((e)=>console.log(" Something is wrong"))
         return ctx.wizard.next()
     },
     (ctx)=>{
@@ -140,7 +140,7 @@ const input_form = new WizardScene('input_data',
                                                         [{text: "Start", callback_data: "start"}]
                                                     ]
                                                 }
-                                            }).catch(()=>console.log(" Something is wrong"))
+                                            }).catch((e)=>console.log(" Something is wrong"))
                                         }
                                     })
                                 }
@@ -175,7 +175,7 @@ const input_form = new WizardScene('input_data',
                                         [{text: "Start", callback_data: "start"}]
                                     ]
                                 }
-                            }).catch(()=>console.log(" Something is wrong"))
+                            }).catch((e)=>console.log(" Something is wrong"))
                         }
                     })
                 }
@@ -224,7 +224,7 @@ bot.start((ctx)=>{
                             [{text: "Refresh", callback_data: "start"}]
                         ]
                     }
-                }).catch(()=>console.log(" Something is wrong"))
+                }).catch((e)=>console.log(" Something is wrong"))
                 
             } else {
                 
@@ -249,7 +249,7 @@ bot.start((ctx)=>{
                                         [{text: "Start", callback_data: "join"}]
                                     ]
                                 }
-                            }).catch(()=>console.log(" Something is wrong"))
+                            }).catch((e)=>console.log(" Something is wrong"))
                         }
 
                     })
@@ -262,7 +262,7 @@ bot.start((ctx)=>{
                                 [{text: "Start", callback_data: "join"}]
                             ]
                         }
-                    }).catch(()=>console.log(" Something is wrong"))
+                    }).catch((e)=>console.log(" Something is wrong"))
                 }
  
             }
@@ -284,7 +284,7 @@ bot.action("start",ctx=>{
                         [{text: "Refresh", callback_data: "start"}]
                     ]
                 }
-            }).catch(()=>console.log(" Something is wrong"))
+            }).catch((e)=>console.log(" Something is wrong"))
         }
     })
 })
