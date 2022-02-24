@@ -338,16 +338,22 @@ bot.action("start", (ctx) => {
 		userId: ctx.from.id
 	})
 	data.then((data) => {
-		ctx.telegram.sendMessage(ctx.from.id, `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${data[0].wallet} \nReferral Users - ${data[0].referral_count || '0'} \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck`, {
-			reply_markup: {
-				inline_keyboard: [
-					[{
-						text: "Refresh",
-						callback_data: "start"
-					}]
-				]
-			}
-		}).catch((e) => console.log(" Something is wrong"))
+		const wallet = data[0].wallet
+			const r = data[0].referral_count
+
+
+
+			ctx.telegram.sendMessage(ctx.from.id, "Account Info:\n\nName - "+ctx.from.first_name +"\nWallet Address - "+wallet +"\nReferral Users - "+r+" \nRefferal Link - **`https://t.me/"+ctx.botInfo.username+"?start="+ctx.from.id +"`**\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck", {
+	reply_markup: {
+		inline_keyboard: [
+			[{
+				text: "Refresh",
+				callback_data: "start"
+			}]
+		]
+	},
+	parse_mode: "Markdown"
+}).catch((e) => console.log(" Something is wrong"))
 	}).catch((e) => ctx.reply("Please try with /start"))
 })
 
