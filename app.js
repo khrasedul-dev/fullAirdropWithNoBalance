@@ -149,7 +149,7 @@ const input_form = new WizardScene('input_data',
                     
                     const inputData = new userModel({
                         userId: ctx.from.id,
-                        name: ctx.from.name,
+                        name: ctx.from.first_name,
                         twitter: ctx.session.user.twitter,
                         reddit: ctx.session.user.reddit,
                         wallet:  ctx.update.message.text,
