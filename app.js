@@ -213,64 +213,82 @@ bot.start((ctx)=>{
 
     const ref = ctx.startPayload
 
-    userModel.find({userId : ctx.from.id } , (e,data)=>{
-        if (e) {
-            throw e
-        } else {
-            if (data.length > 0) {
+    const data = userModel.find({
+    userId: ctx.from.id
+})
 
-                const wallet = data[0].wallet
 
-                ctx.telegram.sendMessage(ctx.from.id,`Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${wallet} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck`,{
+data.then((data) => {
+
+    if (data.length > 0) {
+
+        const wallet = data[0].wallet
+
+        ctx.telegram.sendMessage(ctx.from.id, `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${wallet} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck`, {
+            reply_markup: {
+                inline_keyboard: [
+                    [{
+                        text: "Refresh",
+                        callback_data: "start"
+                    }]
+                ]
+            }
+        }).catch((e) => console.log(" Something is wrong"))
+
+    } else {
+
+
+
+
+        if (ref.length > 0) {
+
+            const inputData = new userModel({
+                userId: ctx.from.id,
+                name: ctx.from.first_name,
+                referrer_id: ref,
+                referral_count: 0
+            })
+
+            const data = inputData.save()
+
+            data.then((e) => {
+
+
+                ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest.\n\nWe will be giving 0.5BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.`, {
                     reply_markup: {
                         inline_keyboard: [
-                            [{text: "Refresh", callback_data: "start"}]
+                            [{
+                                text: "Start",
+                                callback_data: "join"
+                            }]
                         ]
                     }
-                }).catch((e)=>console.log(" Something is wrong"))
-                
-            } else {
-                
-                if (ref.length > 0) {
-                    
-                    const inputData = new userModel({
-                        userId : ctx.from.id,
-                        name: ctx.from.first_name,
-                        referrer_id: ref,
-                        referral_count: 0
-                    })
+                }).catch((e) => console.log(" Something is wrong"))
 
-                    inputData.save((e)=>{
 
-                        if (e) {
-                            throw e
-                        } else {
-                            
-                            ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest.\n\nWe will be giving 0.5BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
-                                reply_markup: {
-                                    inline_keyboard: [
-                                        [{text: "Start", callback_data: "join"}]
-                                    ]
-                                }
-                            }).catch((e)=>console.log(" Something is wrong"))
-                        }
+            }).catch((e) => console.log("Something is wrong "))
 
-                    })
 
-                } else {
 
-                    ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest.\n\nWe will be giving 0.5BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
-                        reply_markup: {
-                            inline_keyboard: [
-                                [{text: "Start", callback_data: "join"}]
-                            ]
-                        }
-                    }).catch((e)=>console.log(" Something is wrong"))
+
+        } else {
+
+            ctx.telegram.sendMessage(ctx.chat.id, `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest.\n\nWe will be giving 0.5BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.`, {
+                reply_markup: {
+                    inline_keyboard: [
+                        [{
+                            text: "Start",
+                            callback_data: "join"
+                        }]
+                    ]
                 }
- 
-            }
+            }).catch((e) => console.log(" Something is wrong"))
         }
-    })
+
+    }
+
+
+}).catch((e) => ctx.reply("Please try again"))
 
 })
 
