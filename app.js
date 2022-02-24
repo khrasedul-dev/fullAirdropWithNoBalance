@@ -272,12 +272,10 @@ bot.start((ctx)=>{
 })
 
 
-bot.action("start",ctx=>{
+bot.action("start", async (ctx)=>{
 
-    userModel.find({userId: ctx.from.id} , (e,data)=>{
-        if (e) {
-            console.log(e)
-        } else {
+    	const data = userModel.find({userId: ctx.from.id})
+    	data.then((data)=>{
             ctx.telegram.sendMessage(ctx.from.id, `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${data[0].wallet} \nReferral Users - ${data[0].referral_count || '0'} \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck`,{
                 reply_markup: {
                     inline_keyboard: [
@@ -285,8 +283,7 @@ bot.action("start",ctx=>{
                     ]
                 }
             }).catch((e)=>console.log(" Something is wrong"))
-        }
-    }).catch((e)=>console.log(" Something is wrong"))
+	}).catch((e)=>console.log("Something is wrong"))
 })
 
 
