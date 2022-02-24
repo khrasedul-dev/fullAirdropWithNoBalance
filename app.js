@@ -16,7 +16,10 @@ mongoose.connect('mongodb+srv://rasedul20:rasedul20@telegramproject.w3ip3.mongod
 
 
 
-bot.use(session())
+bot.use(session({
+property: 'chatSession',
+getSessionKey: (ctx) => ctx.chat && ctx.chat.id,
+}))
 
 
 
