@@ -34,12 +34,12 @@ bot.action('join',ctx=>{
     }).catch((e)=>console.log(" Something is wrong"))
 })
 
-bot.action('groupJoin',ctx=>{
-    checkGroup.find({userId: ctx.from.id} , (e,data)=>{
-        if (e) {
-            throw e
-        } else {
-            if (data.length > 0) {
+bot.action('groupJoin',async (ctx)=>{
+    const data = checkGroup.find({userId: ctx.from.id})
+            
+     data.then(()=>{
+
+		if (data.length > 0) {
                 
                 
                 ctx.telegram.sendMessage(ctx.chat.id , `Task 2: \n\nPlease Join our telegram channel \nhttps://t.me/dogymonchannel \n\nClick done to proceed after you have joined` ,{
@@ -61,8 +61,10 @@ bot.action('groupJoin',ctx=>{
                     }
                 }).catch((e)=>console.log(" Something is wrong"))
             }
-        }
-    })
+
+	}).catch((e)=>console.log("Something is wrong"))
+
+
 })
 
 const input_form = new WizardScene('input_data',
