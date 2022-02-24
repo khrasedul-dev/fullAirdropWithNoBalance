@@ -295,7 +295,6 @@ bot.action("start",ctx=>{
 
 bot.on('new_chat_members',(ctx)=>{
 
-    console.log(ctx)
 
     checkGroup.find({userId: ctx.from.id} , (e,data)=>{
         if (e) {
