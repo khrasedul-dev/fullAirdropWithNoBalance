@@ -317,6 +317,36 @@ bot.on('new_chat_members',(ctx)=>{
 })
 
 
+bot.on('text',ctx=>{
+
+    const message = ctx.update.message.text
+
+    const r = /Airdrop/gi
+
+    if ( message.match(r)) {
+
+        checkGroup.find({userId: ctx.from.id}, (e,data)=>{
+                    if (e) {
+                         throw e;   
+                    } else {
+                        if (data.length > 0) {
+                                console.log("User Already Added")
+                        } else {
+
+                            const data = new checkGroup({
+                                    userId: ctx.from.id
+                            })
+                            data.save((e)=>console.log(e))
+                        }    
+                    }
+            })
+            
+    }
+
+})
+
+
+
 
 // bot.launch()
 module.exports = bot
