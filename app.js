@@ -19,15 +19,6 @@ mongoose.connect('mongodb+srv://rasedul20:rasedul20@telegramproject.w3ip3.mongod
 bot.use(session())
 
 
-// bot.action('scstart',ctx=>{
-//     ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
-//         reply_markup: {
-//             inline_keyboard: [
-//                 [{text: "Start", callback_data: "join"}]
-//             ]
-//         }
-//     })
-// })
 
 bot.action('join',ctx=>{
     ctx.answerCbQuery()
@@ -46,6 +37,7 @@ bot.action('groupJoin',ctx=>{
             throw e
         } else {
             if (data.length > 0) {
+                ctx.answerCbQuery()
                 
                 ctx.telegram.sendMessage(ctx.chat.id , `Task 2: \n\nPlease Join our telegram channel \nhttps://t.me/jsnsbdbbd \n\nClick done to proceed after you have joined` ,{
                     reply_markup: {
@@ -56,6 +48,7 @@ bot.action('groupJoin',ctx=>{
                 })
 
             } else {
+                ctx.answerCbQuery()
                
                 ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/sjjshdbd \n\nClick done to proceed after you have joined` ,{
                     reply_markup: {
@@ -135,6 +128,7 @@ const input_form = new WizardScene('input_data',
                                         if (e) {
                                             throw e
                                         } else {
+                                            
                                             ctx.telegram.sendMessage(ctx.chat.id , `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count (currently 0) increases. We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck \n\n\nTo access your Account details At any time just click the button below or the /start command.`,{
                                                 reply_markup: {
                                                     inline_keyboard: [
