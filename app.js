@@ -138,18 +138,18 @@ const input_form = new WizardScene('input_data',
 				}
 
 
-				const data = userModel.updateOne({
+				const data2 = userModel.updateOne({
 					userId: ctx.from.id
 				}, inputData)
 
-				data.then((data) => {
+				data2.then((data) => {
 
 
-					userModel.find({
+					const data3 = userModel.find({
 						userId: ref_id
 					})
 
-					data.then((data) => {
+					data3.then((data) => {
 
 
 						const ref_count = parseInt(data2[0].referral_count)
@@ -160,11 +160,11 @@ const input_form = new WizardScene('input_data',
 						}
 
 
-						const data = userModel.updateOne({
+						const data4 = userModel.updateOne({
 							userId: ref_id
 						}, update_ref)
 
-						data.then((data) => {
+						data4.then((data) => {
 							ctx.telegram.sendMessage(ctx.chat.id, `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${ctx.update.message.text} \nReferral Users - 0 \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id}\n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 0.5 bnb worth of tokens each to 150 persons with the highest number of referrals. so it all depends on your number of referrals .Start sharing your link with your friends now. Good luck`, {
 								reply_markup: {
 									inline_keyboard: [
