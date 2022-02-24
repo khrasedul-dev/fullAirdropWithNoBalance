@@ -38,7 +38,7 @@ bot.action('groupJoin', (ctx)=>{
 
     const data = checkGroup.find({userId: ctx.from.id})
             
-     data.then(()=>{
+     data.then((data)=>{
 
 		if (data.length > 0) {
                 
