@@ -22,7 +22,7 @@ bot.use(session())
 
 const userScene = new BaseScene('user_data')
 
-userScene.command('start',ctx=>{
+userScene.use((ctx,next)=>{
     ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
         reply_markup: {
             inline_keyboard: [
@@ -30,6 +30,8 @@ userScene.command('start',ctx=>{
             ]
         }
     })
+
+    next()
 })
 
 userScene.action('join',ctx=>{
