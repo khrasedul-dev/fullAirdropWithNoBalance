@@ -193,7 +193,7 @@ const input_form = new WizardScene('input_data',
 
 
 
-const stage = new Stage([input_form])
+const stage = new Stage([input_form],sessionName: 'chatSession')
 
 bot.use(stage.middleware())
 
