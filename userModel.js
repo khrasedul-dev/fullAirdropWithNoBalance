@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
     reddit: {
         type: String
     },
+    facebook: {
+        type: String
+    },
     wallet: {
         type: String
     }
