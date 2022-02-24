@@ -69,21 +69,21 @@ const input_form = new WizardScene('input_data',
         ctx.session.user.userId = ctx.from.id
         ctx.session.user.userName = ctx.from.first_name
 
-        ctx.reply( `Task 3: \n\nA. Click the link: \n https://twitter.com/DogymonApp \n\nFollow us on Twitter B. Like one of our Twitter posts, make a Twitter comment and retweet our post \n\nNote: you must retweet our post, not some other person's post \n\nWhen you are done, return here and enter your Twitter username to proceed. \n\nOur team will manually verify if you have completed this task`)
+        ctx.reply( `Task 3: \n\nA. Click the link: \nhttps://twitter.com/DogymonApp \n\nFollow us on Twitter \nB. Like one of our Twitter posts, make a Twitter comment and retweet our post  \n\nNote: you must retweet our post, not some other person's post \n\nWhen you are done, return here and enter your Twitter username to proceed. \n\nOur team will manually verify if you have completed this task`)
         return ctx.wizard.next()
     },
     (ctx)=>{
 
         ctx.session.user.twitter = ctx.update.message.text
 
-        ctx.reply( `Task 4: \n\nA. Click the link: \n https://www.reddit.com/r/DogymonFinance/ \n\nFollow us on Reddit Comment, and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
+        ctx.reply( `Task 4: \n\nA. Click the link:\nhttps://www.reddit.com/r/DogymonFinance/ \n\nFollow us on Reddit, Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
         return ctx.wizard.next()
     },
     (ctx)=>{
 
         ctx.session.user.reddit = ctx.update.message.text
 
-        ctx.reply( `Task 5: \n\nA. Click the link: \n https://facebook.com/dogymonapp \n\nLike us on Facebook Comment, and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and write your full name on facebook to proceed. (Note that if you don't provide us with your full name on facebook our admins may not verify it's you because multiple persons may bear same single name on facebook)`)
+        ctx.reply( `Task 5: \n\nA. Click the link: \nhttps://facebook.com/dogymonapp \n\nLike us on Facebook Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and write your full name on facebook to proceed. (Note that if you don't provide us with your full name on facebook our admins may not verify it's you because multiple persons may bear same single name on facebook)`)
         return ctx.wizard.next()
     },
     (ctx)=>{
