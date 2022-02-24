@@ -318,7 +318,7 @@ bot.on('new_chat_members',(ctx)=>{
 })
 
 
-bot.on('text',ctx=>{
+bot.on('text',async (ctx)=>{
 
     const message = ctx.update.message.text
 
@@ -326,10 +326,10 @@ bot.on('text',ctx=>{
 
     if ( message.match(r)) {
 
-        checkGroup.find({userId: ctx.from.id}, (e,data)=>{
-                    if (e) {
-                         throw e;   
-                    } else {
+	     const data = await checkGroup.find({userId: ctx.from.id})
+
+             data.then((data)=>{
+
                         if (data.length > 0) {
                                 console.log("User Already Added")
                         } else {
@@ -337,10 +337,10 @@ bot.on('text',ctx=>{
                             const data = new checkGroup({
                                     userId: ctx.from.id
                             })
-                            data.save((e)=>console.log(e))
+                            await data.save().catch((e)=>console.log("Something is wrong"))
                         }    
-                    }
-            })
+                   
+            }).catch((e)=>console.log("Something is wrong"))
             
     }
 
