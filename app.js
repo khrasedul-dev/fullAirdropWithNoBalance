@@ -93,7 +93,14 @@ const input_form = new WizardScene('input_data',
 
         ctx.session.user.reddit = ctx.update.message.text
 
-        ctx.reply( `Task 5: \n\nDrop your BEP-20 wallet address to receive your dogymon token if you win`)
+        ctx.reply( `Task 5: \n\nA. Like us on Facebook, comment, and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
+        return ctx.wizard.next()
+    },
+    (ctx)=>{
+
+        ctx.session.user.facebook = ctx.update.message.text
+
+        ctx.reply( `Task 6: \n\nDrop your BEP-20 wallet address to receive your dogymon token if you win`)
         return ctx.wizard.next()
     },
     (ctx)=>{
@@ -110,6 +117,7 @@ const input_form = new WizardScene('input_data',
                     const inputData = {
                         twitter: ctx.session.user.twitter,
                         reddit: ctx.session.user.reddit,
+                        facebook: ctx.session.user.facebook,
                         wallet:  ctx.update.message.text
                     }
                     
@@ -152,6 +160,7 @@ const input_form = new WizardScene('input_data',
                         name: ctx.from.first_name,
                         twitter: ctx.session.user.twitter,
                         reddit: ctx.session.user.reddit,
+                        facebook: ctx.session.user.facebook,
                         wallet:  ctx.update.message.text,
                         referral_count: '0'
                     })
