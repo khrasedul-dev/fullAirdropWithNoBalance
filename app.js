@@ -286,7 +286,7 @@ bot.action("start",ctx=>{
                 }
             }).catch((e)=>console.log(" Something is wrong"))
         }
-    })..catch((e)=>console.log(" Something is wrong"))
+    }).catch((e)=>console.log(" Something is wrong"))
 })
 
 
