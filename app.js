@@ -9,7 +9,7 @@ const checkGroup = require('./checkGroup')
 const bot = new Composer()
 
 
-mongoose.connect('mongodb+srv://rasedul20:rasedul20@telegramproject.w3ip3.mongodb.net/telegramProject?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true}).catch((e)=>{
+mongoose.connect('mongodb+srv://rasedul20:rsedul20@telegramproject.w3ip3.mongodb.net/telegramProject?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true}).catch((e)=>{
         console.log(e)
 }).then((d)=>console.log('Database connected')).catch((e)=>console.log(e))
 
@@ -22,17 +22,16 @@ bot.use(session())
 
 const userScene = new BaseScene('user_data')
 
-userScene.use((ctx,next)=>{
-    ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
-        reply_markup: {
-            inline_keyboard: [
-                [{text: "Start", callback_data: "join"}]
-            ]
-        }
-    })
+// userScene.use((ctx)=>{
+//     ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
+//         reply_markup: {
+//             inline_keyboard: [
+//                 [{text: "Start", callback_data: "join"}]
+//             ]
+//         }
+//     })
 
-    next()
-})
+// })
 
 userScene.action('join',ctx=>{
     ctx.answerCbQuery()
@@ -73,6 +72,7 @@ userScene.action('groupJoin',ctx=>{
         }
     })
 })
+
 
 const input_form = new WizardScene('input_data',
     (ctx)=>{
@@ -240,6 +240,16 @@ bot.start((ctx)=>{
                         } else {
                             
                             ctx.scene.enter('user_data')
+
+                            ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
+                                reply_markup: {
+                                    inline_keyboard: [
+                                        [{text: "Start", callback_data: "join"}]
+                                    ]
+                                }
+                            })
+
+
                         }
 
                     })
@@ -247,6 +257,18 @@ bot.start((ctx)=>{
                 } else {
 
                     ctx.scene.enter('user_data')
+
+
+                    ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
+                        reply_markup: {
+                            inline_keyboard: [
+                                [{text: "Start", callback_data: "join"}]
+                            ]
+                        }
+                    })
+
+
+
                 }
  
             }
