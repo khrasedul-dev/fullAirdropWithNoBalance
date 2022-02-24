@@ -70,30 +70,30 @@ const input_form = new WizardScene('input_data',
 	
 	const user_id = ctx.from.id
 
-        ctx.session.user.user_id = {}
-        ctx.session.user.user_id.userId = ctx.from.id
-        ctx.session.user.user_id.userName = ctx.from.first_name
+        ctx.session.user = {}
+        ctx.session.user.userId = ctx.from.id
+        ctx.session.user.userName = ctx.from.first_name
 
         ctx.reply( `Task 3: \n\nA. Click the link: \nhttps://twitter.com/DogymonApp \n\nFollow us on Twitter \nB. Like one of our Twitter posts, make a Twitter comment and retweet our post  \n\nNote: you must retweet our post, not some other person's post \n\nWhen you are done, return here and enter your Twitter username to proceed. \n\nOur team will manually verify if you have completed this task`)
         return ctx.wizard.next()
     },
     (ctx)=>{
 	const user_id = ctx.from.id
-        ctx.session.user.user_id.twitter = ctx.update.message.text
+        ctx.session.user.twitter = ctx.update.message.text
 
         ctx.reply( `Task 4: \n\nA. Click the link:\nhttps://www.reddit.com/r/DogymonFinance/ \n\nFollow us on Reddit, Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and enter your Reddit username to proceed. \n\nOur team will manually verify if you have completed this task`)
         return ctx.wizard.next()
     },
     (ctx)=>{
 	const user_id = ctx.from.id
-        ctx.session.user.user_id.reddit = ctx.update.message.text
+        ctx.session.user.reddit = ctx.update.message.text
 
         ctx.reply( `Task 5: \n\nA. Click the link: \nhttps://facebook.com/dogymonapp \n\nLike us on Facebook Comment and share one of our posts there. \n\nNote you must comment and share our post, not some other person's post \n\nWhen you are done, return here and write your full name on facebook to proceed. (Note that if you don't provide us with your full name on facebook our admins may not verify it's you because multiple persons may bear same single name on facebook)`)
         return ctx.wizard.next()
     },
     (ctx)=>{
 	const user_id = ctx.from.id
-        ctx.session.user.user_id.facebook = ctx.update.message.text
+        ctx.session.user.facebook = ctx.update.message.text
 
         ctx.reply( `Task 6: \n\nDrop your BEP-20 wallet address to receive your dogymon token if you win`)
         return ctx.wizard.next()
@@ -111,9 +111,9 @@ const input_form = new WizardScene('input_data',
                     const ref_id = parseInt(data[0].referrer_id)
 
                     const inputData = {
-                        twitter: ctx.session.user.user_id.twitter,
-                        reddit: ctx.session.user.user_id.reddit,
-                        facebook: ctx.session.user.user_id.facebook,
+                        twitter: ctx.session.user.twitter,
+                        reddit: ctx.session.user.reddit,
+                        facebook: ctx.session.user.facebook,
                         wallet:  ctx.update.message.text
                     }
                     
@@ -157,9 +157,9 @@ const input_form = new WizardScene('input_data',
                     const inputData = new userModel({
                         userId: ctx.from.id,
                         name: ctx.from.first_name,
-                        twitter: ctx.session.user.user_id.twitter,
-                        reddit: ctx.session.user.user_id.reddit,
-                        facebook: ctx.session.user.user_id.facebook,
+                        twitter: ctx.session.user.twitter,
+                        reddit: ctx.session.user.reddit,
+                        facebook: ctx.session.user.facebook,
                         wallet:  ctx.update.message.text,
                         referral_count: '0'
                     })
