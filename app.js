@@ -182,9 +182,7 @@ const input_form = new WizardScene('input_data',
 )
 
 
-bot.action('channelJoin', async(ctx)=>{
-    await ctx.scene.enter('input_data')
-})
+
 
 
 
@@ -198,6 +196,7 @@ bot.use(stage.middleware())
 
 
 
+bot.action('channelJoin', Stage.enter('input_data'))
 
 
 bot.start((ctx)=>{
