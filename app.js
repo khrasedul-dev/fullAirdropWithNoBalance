@@ -92,7 +92,7 @@ const input_form = new WizardScene('input_data',
     },
     (ctx)=>{
 	
-        ctx.session.facebook = ctx.update.message.text
+        ctx.user.facebook = ctx.update.message.text
 
         ctx.reply( `Task 6: \n\nDrop your BEP-20 wallet address to receive your dogymon token if you win`)
         return ctx.wizard.next()
@@ -110,9 +110,9 @@ const input_form = new WizardScene('input_data',
                     const ref_id = parseInt(data[0].referrer_id)
 
                     const inputData = {
-                        twitter: ctx.session.twitter,
-                        reddit: ctx.session.reddit,
-                        facebook: ctx.session.facebook,
+                        twitter: ctx.user.twitter,
+                        reddit: ctx.user.reddit,
+                        facebook: ctx.user.facebook,
                         wallet:  ctx.update.message.text
                     }
                     
@@ -156,9 +156,9 @@ const input_form = new WizardScene('input_data',
                     const inputData = new userModel({
                         userId: ctx.from.id,
                         name: ctx.from.first_name,
-                        twitter: ctx.session.twitter,
-                        reddit: ctx.session.reddit,
-                        facebook: ctx.session.facebook,
+                        twitter: ctx.user.twitter,
+                        reddit: ctx.user.reddit,
+                        facebook: ctx.user.facebook,
                         wallet:  ctx.update.message.text,
                         referral_count: '0'
                     })
