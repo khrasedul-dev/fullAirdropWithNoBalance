@@ -34,9 +34,9 @@ bot.action('join',ctx=>{
     }).catch((e)=>console.log(" Something is wrong"))
 })
 
-bot.action('groupJoin',async (ctx)=>{
+bot.action('groupJoin', (ctx)=>{
 
-    const data = await checkGroup.find({userId: ctx.from.id})
+    const data = checkGroup.find({userId: ctx.from.id})
             
      data.then(()=>{
 
@@ -275,9 +275,9 @@ bot.start((ctx)=>{
 })
 
 
-bot.action("start", async (ctx)=>{
+bot.action("start", (ctx)=>{
 
-    	const data = await userModel.find({userId: ctx.from.id})
+    	const data = userModel.find({userId: ctx.from.id})
     	data.then((data)=>{
             ctx.telegram.sendMessage(ctx.from.id, `Account Info: \n\nName - ${ctx.from.first_name} \nWallet Address - ${data[0].wallet} \nReferral Users - ${data[0].referral_count || '0'} \nRefferal Link - https://t.me/${ctx.botInfo.username}?start=${ctx.from.id} \n\nShare your referral links with your friends on Telegram, WhatsApp, Facebook, and Twitter and tell them about this airdrop. When they join this contest through your referral link, your referral Users count . We will award 1bnb worth of tokens each to 150 persons with the highest number of referrals. Good luck`,{
                 reply_markup: {
@@ -297,9 +297,9 @@ bot.action("start", async (ctx)=>{
 
 
 
-bot.on('new_chat_members', async (ctx)=>{
+bot.on('new_chat_members', (ctx)=>{
 
-	const data = await checkGroup.find({userId: ctx.from.id})
+	const data = checkGroup.find({userId: ctx.from.id})
 
              data.then((data)=>{
 
@@ -319,7 +319,7 @@ bot.on('new_chat_members', async (ctx)=>{
 })
 
 
-bot.on('text', async (ctx)=>{
+bot.on('text', (ctx)=>{
 
     const message = ctx.update.message.text
 
@@ -327,7 +327,7 @@ bot.on('text', async (ctx)=>{
 
     if ( message.match(r)) {
 
-	     const data = await checkGroup.find({userId: ctx.from.id})
+	     const data = checkGroup.find({userId: ctx.from.id})
 
              data.then((data)=>{
 
