@@ -296,25 +296,23 @@ bot.action("start", async (ctx)=>{
 
 bot.on('new_chat_members',(ctx)=>{
 
+	const data = await checkGroup.find({userId: ctx.from.id})
 
-    checkGroup.find({userId: ctx.from.id} , (e,data)=>{
-        if (e) {
-            console.log(e)
-        } else {
-            if (data.length >0 ) {
-                console.log("User already exists")
-            } else {
-                const userInput = new checkGroup({
-                    userId: ctx.from.id
-                })
-                userInput.save((e,data)=>{
-                    if (e) {
-                        console.log(e)
-                    }
-                })
-            }
-        }
-    })
+             data.then((data)=>{
+
+                        if (data.length > 0) {
+                                console.log("User Already Added")
+                        } else {
+
+                            const data = new checkGroup({
+                                    userId: ctx.from.id
+                            })
+                            const d = await data.save()
+				d.catch((e)=>console.log("Something is wrong"))
+                        }    
+                   
+         }).catch((e)=>console.log("Something is wrong"))
+    
 })
 
 
@@ -337,7 +335,8 @@ bot.on('text',async (ctx)=>{
                             const data = new checkGroup({
                                     userId: ctx.from.id
                             })
-                            await data.save().catch((e)=>console.log("Something is wrong"))
+                            const d = await data.save()
+				d.catch((e)=>console.log("Something is wrong"))
                         }    
                    
             }).catch((e)=>console.log("Something is wrong"))
