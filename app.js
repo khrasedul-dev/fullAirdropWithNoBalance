@@ -19,20 +19,17 @@ mongoose.connect('mongodb+srv://rasedul20:rasedul20@telegramproject.w3ip3.mongod
 bot.use(session())
 
 
+// bot.action('scstart',ctx=>{
+//     ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
+//         reply_markup: {
+//             inline_keyboard: [
+//                 [{text: "Start", callback_data: "join"}]
+//             ]
+//         }
+//     })
+// })
 
-const userScene = new BaseScene('user_data')
-
-userScene.command('start',ctx=>{
-    ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
-        reply_markup: {
-            inline_keyboard: [
-                [{text: "Start", callback_data: "join"}]
-            ]
-        }
-    })
-})
-
-userScene.action('join',ctx=>{
+bot.action('join',ctx=>{
     ctx.answerCbQuery()
     ctx.telegram.sendMessage(ctx.chat.id , `Task 1: \n\nPlease Join our telegram gorup \nhttps://t.me/sjjshdbd \n\nClick done to proceed after you have joined` ,{
         reply_markup: {
@@ -43,7 +40,7 @@ userScene.action('join',ctx=>{
     })
 })
 
-userScene.action('groupJoin',ctx=>{
+bot.action('groupJoin',ctx=>{
     checkGroup.find({userId: ctx.from.id} , (e,data)=>{
         if (e) {
             throw e
@@ -191,7 +188,7 @@ const input_form = new WizardScene('input_data',
 )
 
 
-userScene.action('channelJoin', async(ctx)=>{
+bot.action('channelJoin', async(ctx)=>{
     await ctx.scene.enter('input_data')
 })
 
@@ -199,7 +196,7 @@ userScene.action('channelJoin', async(ctx)=>{
 
 
 
-const stage = new Stage([userScene,input_form])
+const stage = new Stage([input_form])
 
 bot.use(stage.middleware())
 
@@ -246,14 +243,26 @@ bot.start((ctx)=>{
                             throw e
                         } else {
                             
-                            ctx.scene.enter('user_data')
+                            ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
+                                reply_markup: {
+                                    inline_keyboard: [
+                                        [{text: "Start", callback_data: "join"}]
+                                    ]
+                                }
+                            })
                         }
 
                     })
 
                 } else {
 
-                    ctx.scene.enter('user_data')
+                    ctx.telegram.sendMessage(ctx.chat.id , `Hello ${ctx.from.first_name}, \nWelcome to Dogymon Airdrop Contest. \n\nWe will be giving 1BNB worth of dogymon tokens each to 150 winners who have completed our simple airdrop tax and had the most number of referrals. \n\nClick the start button below to join the contest.` ,{
+                        reply_markup: {
+                            inline_keyboard: [
+                                [{text: "Start", callback_data: "join"}]
+                            ]
+                        }
+                    })
                 }
  
             }
