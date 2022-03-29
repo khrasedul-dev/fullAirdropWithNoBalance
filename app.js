@@ -19,8 +19,6 @@ const bot = new Composer()
 mongoose.connect('mongodb+srv://rasedul20:rasedul20@telegramproject.w3ip3.mongodb.net/telegramProject?retryWrites=true&w=majority', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true
-}).catch((e) => {
-	console.log(e)
 }).then((d) => console.log('Database connected')).catch((e) => console.log(e))
 
 
